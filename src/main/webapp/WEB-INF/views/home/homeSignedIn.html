@@ -7,11 +7,11 @@
 	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
 <link href="../../../resources/css/core.css" rel="stylesheet"
 	media="screen" th:href="@{/resources/css/core.css}" />
-	<link href="../../../resources/css/dashboard.css" rel="stylesheet"
+<link href="../../../resources/css/dashboard.css" rel="stylesheet"
 	media="screen" th:href="@{/resources/css/dashboard.css}" />
 <script src="../../../resources/js/jquery.1.10.2.min.js"
 	th:src="@{/resources/js/jquery.1.10.2.min.js}"></script>
-	<script src="../../../resources/js/docs.min.js"
+<script src="../../../resources/js/docs.min.js"
 	th:src="@{/resources/js/docs.min.js}"></script>
 <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
@@ -24,31 +24,13 @@
 		<DIV class="row">
 			<DIV class="col-sm-3 col-md-2 sidebar">
 				<UL class="nav nav-sidebar">
-					<LI class="active"><A
-						href="http://getbootstrap.com/examples/dashboard/#">Overview</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/#">Reports</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/#">Analytics</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/#">Export</A></LI>
-				</UL>
-				<UL class="nav nav-sidebar">
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">Nav
-							item</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">Nav
-							item again</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">One
-							more nav</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">Another
-							nav item</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">More
-							navigation</A></LI>
-				</UL>
-				<UL class="nav nav-sidebar">
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">Nav
-							item again</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">One
-							more nav</A></LI>
-					<LI><A href="http://getbootstrap.com/examples/dashboard/">Another
-							nav item</A></LI>
+					<LI class="active"><A href="#" th:text="#{engineer.module}">#{view.index.title}</A></LI>
+					<LI><A href="#" th:text="#{manager.module}">Reports</A></LI>
+					<LI><A href="#" th:text="#{snr.manager.module}">Analytics</A></LI>
+					<LI><A href="#" th:text="#{safety.manager.module}">Export</A></LI>
+					<LI><A href="#" th:text="#{mobile.tester.module}">Export</A></LI>
+					<LI><A href="#" th:text="#{scheduling.module}">Export</A></LI>
+					<LI><A href="#" th:text="#{reports.module}">Export</A></LI>
 				</UL>
 			</DIV>
 			<DIV class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -190,6 +172,6 @@
 			</DIV>
 		</DIV>
 	</DIV>
-	
+
 </body>
 </html>
