@@ -29,7 +29,7 @@
 					<LI><A href="#" th:text="#{snr.manager.module}">Analytics</A></LI>
 					<LI><A href="#" th:text="#{safety.manager.module}">Export</A></LI>
 					<LI><A href="#" th:text="#{mobile.tester.module}">Export</A></LI>
-					<LI><A href="#" th:text="#{scheduling.module}">Export</A></LI>
+					<LI><A href="#" th:text="#{scheduling.module}" sec:authorize="hasRole('ROLE_ADMIN')">Export</A></LI>
 					<LI><A href="#" th:text="#{reports.module}">Export</A></LI>
 				</UL>
 			</DIV>
