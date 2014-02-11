@@ -1,24 +1,195 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title th:text="#{view.index.title}">Welcome!</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+<title th:text="#{view.index.title}">Welcome!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+	<link href="../../../resources/css/dashboard.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/dashboard.css}" />
+<script src="../../../resources/js/jquery.1.10.2.min.js"
+	th:src="@{/resources/js/jquery.1.10.2.min.js}"></script>
+	<script src="../../../resources/js/docs.min.js"
+	th:src="@{/resources/js/docs.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div th:replace="fragments/header :: header">&nbsp;</div>
-<div class="container">
-    <!-- /* Handle the flash message */-->
-    <th:block th:if="${message != null}">
-        <!-- /* The message code is returned from the @Controller */ -->
-        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
-    </th:block>
-    <p>
-        Welcome to the Spring MVC Quickstart application!
-    </p>
-</div>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+
+	<DIV class="container-fluid">
+		<DIV class="row">
+			<DIV class="col-sm-3 col-md-2 sidebar">
+				<UL class="nav nav-sidebar">
+					<LI class="active"><A
+						href="http://getbootstrap.com/examples/dashboard/#">Overview</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/#">Reports</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/#">Analytics</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/#">Export</A></LI>
+				</UL>
+				<UL class="nav nav-sidebar">
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">Nav
+							item</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">Nav
+							item again</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">One
+							more nav</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">Another
+							nav item</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">More
+							navigation</A></LI>
+				</UL>
+				<UL class="nav nav-sidebar">
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">Nav
+							item again</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">One
+							more nav</A></LI>
+					<LI><A href="http://getbootstrap.com/examples/dashboard/">Another
+							nav item</A></LI>
+				</UL>
+			</DIV>
+			<DIV class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<!-- /* Handle the flash message */-->
+				<th:block th:if="${message != null}">
+					<!-- /* The message code is returned from the @Controller */ -->
+					<div
+						th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+				</th:block>
+				<H1 class="page-header">Dashboard</H1>
+				<H2 class="sub-header">Section title</H2>
+				<DIV class="table-responsive">
+					<TABLE class="table table-striped">
+						<THEAD>
+							<TR>
+								<TH>#</TH>
+								<TH>Header</TH>
+								<TH>Header</TH>
+								<TH>Header</TH>
+								<TH>Header</TH>
+							</TR>
+						</THEAD>
+						<TBODY>
+							<TR>
+								<TD>1,001</TD>
+								<TD>Lorem</TD>
+								<TD>ipsum</TD>
+								<TD>dolor</TD>
+								<TD>sit</TD>
+							</TR>
+							<TR>
+								<TD>1,002</TD>
+								<TD>amet</TD>
+								<TD>consectetur</TD>
+								<TD>adipiscing</TD>
+								<TD>elit</TD>
+							</TR>
+							<TR>
+								<TD>1,003</TD>
+								<TD>Integer</TD>
+								<TD>nec</TD>
+								<TD>odio</TD>
+								<TD>Praesent</TD>
+							</TR>
+							<TR>
+								<TD>1,003</TD>
+								<TD>libero</TD>
+								<TD>Sed</TD>
+								<TD>cursus</TD>
+								<TD>ante</TD>
+							</TR>
+							<TR>
+								<TD>1,004</TD>
+								<TD>dapibus</TD>
+								<TD>diam</TD>
+								<TD>Sed</TD>
+								<TD>nisi</TD>
+							</TR>
+							<TR>
+								<TD>1,005</TD>
+								<TD>Nulla</TD>
+								<TD>quis</TD>
+								<TD>sem</TD>
+								<TD>at</TD>
+							</TR>
+							<TR>
+								<TD>1,006</TD>
+								<TD>nibh</TD>
+								<TD>elementum</TD>
+								<TD>imperdiet</TD>
+								<TD>Duis</TD>
+							</TR>
+							<TR>
+								<TD>1,007</TD>
+								<TD>sagittis</TD>
+								<TD>ipsum</TD>
+								<TD>Praesent</TD>
+								<TD>mauris</TD>
+							</TR>
+							<TR>
+								<TD>1,008</TD>
+								<TD>Fusce</TD>
+								<TD>nec</TD>
+								<TD>tellus</TD>
+								<TD>sed</TD>
+							</TR>
+							<TR>
+								<TD>1,009</TD>
+								<TD>augue</TD>
+								<TD>semper</TD>
+								<TD>porta</TD>
+								<TD>Mauris</TD>
+							</TR>
+							<TR>
+								<TD>1,010</TD>
+								<TD>massa</TD>
+								<TD>Vestibulum</TD>
+								<TD>lacinia</TD>
+								<TD>arcu</TD>
+							</TR>
+							<TR>
+								<TD>1,011</TD>
+								<TD>eget</TD>
+								<TD>nulla</TD>
+								<TD>Class</TD>
+								<TD>aptent</TD>
+							</TR>
+							<TR>
+								<TD>1,012</TD>
+								<TD>taciti</TD>
+								<TD>sociosqu</TD>
+								<TD>ad</TD>
+								<TD>litora</TD>
+							</TR>
+							<TR>
+								<TD>1,013</TD>
+								<TD>torquent</TD>
+								<TD>per</TD>
+								<TD>conubia</TD>
+								<TD>nostra</TD>
+							</TR>
+							<TR>
+								<TD>1,014</TD>
+								<TD>per</TD>
+								<TD>inceptos</TD>
+								<TD>himenaeos</TD>
+								<TD>Curabitur</TD>
+							</TR>
+							<TR>
+								<TD>1,015</TD>
+								<TD>sodales</TD>
+								<TD>ligula</TD>
+								<TD>in</TD>
+								<TD>libero</TD>
+							</TR>
+						</TBODY>
+					</TABLE>
+				</DIV>
+			</DIV>
+		</DIV>
+	</DIV>
+	
 </body>
 </html>
