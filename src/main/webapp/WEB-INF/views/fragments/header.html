@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-</head>
-<body>
-<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Demo project</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#" th:href="@{/}">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li th:if="${#authorization.expression('!isAuthenticated()')}"><a href="/signin" th:href="@{/signin}">Sign in</a></li>
-                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/logout" th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
-    </div>
+<div class="navigation-bar light" th:fragment="header">
+
+	<div class="navigation-bar-content container">
+		<a href="/" class="element">Supply Chain</a> <span
+			class="element-divider"></span> <a class="element" href="#">Home</a>
+		<span class="element-divider"></span> <a class="element" href="#">Feedback</a>
+
+		<span class="element-divider"></span> <a
+			th:if="${#authorization.expression('!isAuthenticated()')}"
+			class="element place-right" href="/signin" th:href="@{/signin}">Sign
+			in</a> <a th:if="${#authorization.expression('isAuthenticated()')}"
+			class="element place-right" href="/logout" th:href="@{/logout}">Logout</a>
+
+
+	</div>
 </div>
-</body>
-</html>
