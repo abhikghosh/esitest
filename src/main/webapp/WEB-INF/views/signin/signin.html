@@ -32,77 +32,50 @@
 	th:src="@{/resources/js/jquery.mousewheel.js}"></script>
 </head>
 <body class="metro">
-	<!-- <form class="form-narrow form-horizontal"
-		action="/j_spring_security_check" method="post"
-		th:action="@{/j_spring_security_check}">
-		<th:block th:if="${param.error != null}">
-			<div
-				th:replace="fragments/alert :: alert (type='danger', message='Log in error. Please try again.')">Alert</div>
-		</th:block>
-		<fieldset>
-			<legend>Please Log In</legend>
-			<div class="form-group">
-				<label for="userName" class="col-lg-2 control-label">Username</label>
-				<div class="col-lg-10">
-					<input type="text" class="form-control" id="userName"
-						placeholder="User Name" name="j_username" />
-				</div>
+	
+	<DIV class="container">
+		<header class="margin20 nrm nlm">
+			<a class="place-left" href="#" title="">
+				<h1>esiTest</h1>
+			</a> <a class="place-right" href="#" title=""> <img
+				class="place-right" src="../../../resources/images/bt_logo.gif"
+				th:src="@{/resources/images/bt_logo.gif}" />
+			</a>
+
+		</header>
+		<div style="padding:100px;">
+			<div class="form-narrow form-horizontal">
+				<form action="/j_spring_security_check" method="post"
+					th:action="@{/j_spring_security_check}">
+					<th:block th:if="${param.error != null}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message='Log in error. Please try again.')">Alert</div>
+					</th:block>
+					<fieldset>
+						<legend>Log In</legend>
+						<label>Username</label>
+						<div class="input-control text" data-role="input-control">
+							<input type="text" placeholder="type username" name="j_username" />
+							<button class="btn-clear" tabindex="-1"></button>
+						</div>
+						<label>Password</label>
+						<div class="input-control password" data-role="input-control">
+							<input type="password" placeholder="type password"
+								name="j_password" />
+							<button class="btn-reveal" tabindex="-1"></button>
+						</div>
+						<div class="input-control checkbox" data-role="input-control">
+							<label> <input type="checkbox"
+								name="_spring_security_remember_me" /> <span class="check"></span>
+								Remember me
+							</label>
+						</div>
+						<div class="form-group" align="center">
+							<input type="submit" class="large info" value="Log in" />
+						</div>
+					</fieldset>
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="inputPassword" class="col-lg-2 control-label">Password</label>
-				<div class="col-lg-10">
-					<input type="password" class="form-control" id="inputPassword"
-						placeholder="Password" name="j_password" />
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
-					<div class="checkbox">
-						<label> <input type="checkbox"
-							name="_spring_security_remember_me" /> Remember me
-						</label>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-default">Log in</button>
-				</div>
-			</div>
-		</fieldset>
-	</form> -->
-	<DIV class="container" style="margin:0 auto;">
-		<div class="form-narrow form-horizontal">
-			<form action="/j_spring_security_check" method="post"
-				th:action="@{/j_spring_security_check}">
-				<th:block th:if="${param.error != null}">
-					<div
-						th:replace="fragments/alert :: alert (type='danger', message='Log in error. Please try again.')">Alert</div>
-				</th:block>
-				<fieldset>
-					<legend>Log In</legend>
-					<label>Username</label>
-					<div class="input-control text" data-role="input-control">
-						<input type="text" placeholder="type username" name="j_username" />
-						<button class="btn-clear" tabindex="-1"></button>
-					</div>
-					<label>Password</label>
-					<div class="input-control password" data-role="input-control">
-						<input type="password" placeholder="type password"
-							name="j_password" />
-						<button class="btn-reveal" tabindex="-1"></button>
-					</div>
-					<div class="input-control checkbox" data-role="input-control">
-						<label> <input type="checkbox"
-							name="_spring_security_remember_me" /> <span class="check"></span>
-							Remember me
-						</label>
-					</div>
-					<div class="form-group" align="center">
-						<input type="submit" value="Log in" />
-					</div>
-				</fieldset>
-			</form>
 		</div>
 	</DIV>
 </body>

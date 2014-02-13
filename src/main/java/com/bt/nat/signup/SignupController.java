@@ -26,7 +26,7 @@ public class SignupController {
 	@RequestMapping(value = "signup")
 	public String signup(Model model) {
 		model.addAttribute(new SignupForm());
-        return SIGNUP_VIEW_NAME;
+        return "home/homeSignedIn";
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
