@@ -1,11 +1,12 @@
 package com.bt.nat.account;
 
-import javax.persistence.*;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Repository
 @Transactional(readOnly = true)
@@ -17,19 +18,22 @@ public class AccountRepository {
 	@Inject
 	private PasswordEncoder passwordEncoder;
 	
-	@Transactional
-	public Account save(Account account) {
+/*	@Transactional
+	public Item save(Item account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		entityManager.persist(account);
 		return account;
-	}
+	}*/
 	
-	public Account findByEmail(String email) {
+	public TEsitestWebGatekeeperUsers findByEin(Integer ein) {
 		try {
-			return entityManager.createNamedQuery(Account.FIND_BY_EMAIL, Account.class)
-					.setParameter("email", email)
+			System.out.println("in find By ein -- "+ein);
+			return entityManager.createNamedQuery(TEsitestWebGatekeeperUsers.FIND_BY_EIN, TEsitestWebGatekeeperUsers.class)
+					.setParameter("ein", ein)
 					.getSingleResult();
-		} catch (PersistenceException e) {
+		} catch (Exception e) {
+			System.out.println("Error in loading username");
+			e.printStackTrace();
 			return null;
 		}
 	}

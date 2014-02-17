@@ -43,22 +43,27 @@
 	<DIV class="container">
 		<nav class="breadcrumbs">
 			<ul>
-				<li class="active"><a href="/" th:href="@{/}">Home</a></li>
+			<li><a href="/" th:href="@{/}"><i class="icon-home"></i></a></li>
+				<li><a href="/" th:href="@{/}">Home</a></li>
+				<li th:if="${itemSearchForm}" class="active"><a href="/additem" th:href="@{/additem}">Add / Edit Item</a></li>
+				<li th:if="${signupForm}" class="active"><a href="/signup" th:href="@{/signup}">Add User</a></li>
 			</ul>
 		</nav>
 
-		<h1>
-			esiTest - Engineering Safety Integrity Test 
-		</h1>
+		<h1>esiTest - Engineering Safety Integrity Test</h1>
 		<h3>
+			<th:block th:if="${session.currentUser}">
 			Welcome
-			<div th:text="${#authentication.name}" style="display: inline">
-			</div>
+			<div th:object="${session.currentUser}" style="display: inline">
+					<span th:text="*{wguFirstname}"></span>
+				</div>
+			</th:block>
 		</h3>
 		<div class="row">
 			<div class="col-md-3">
 				<nav class="sidebar light">
 					<ul>
+						<li class="active"><a href="/" th:href="@{/}"><i class="icon-home"></i>Home</a></li>
 						<li><A href="#" th:text="#{engineer.module}"
 							class="dropdown-toggle">My esiTest</A>
 							<ul class="dropdown-menu" data-role="dropdown">
@@ -67,8 +72,8 @@
 								<li><a href="">My Items</a></li>
 								<li class="divider"></li>
 							</ul></li>
-						<li><A href="#" th:text="#{manager.module}"
-							class="dropdown-toggle">Manager</A>
+						<li sec:authorize="hasAnyRole('SAdmin','Admin','FM')"><A
+							href="#" th:text="#{manager.module}" class="dropdown-toggle">Manager</A>
 							<ul class="dropdown-menu" data-role="dropdown">
 								<li><a href="">Due esiTest</a></li>
 								<li class="divider"></li>
@@ -87,8 +92,9 @@
 								<li><a href="">View WTMs</a></li>
 								<li class="divider"></li>
 							</ul></li>
-						<li><A href="#" th:text="#{snr.manager.module}"
-							class="dropdown-toggle">Snr. Manager</A>
+						<li sec:authorize="hasAnyRole('SAdmin','Admin','SM')"><A
+							href="#" th:text="#{snr.manager.module}" class="dropdown-toggle">Snr.
+								Manager</A>
 							<ul class="dropdown-menu" data-role="dropdown">
 								<li><a href="">Due esiTest</a></li>
 								<li class="divider"></li>
@@ -97,7 +103,8 @@
 								<li><a href="">Proxy Settings</a></li>
 								<li class="divider"></li>
 							</ul></li>
-						<li><A href="#" th:text="#{safety.manager.module}"
+						<li sec:authorize="hasAnyRole('SAdmin','Admin','NA')"><A
+							href="#" th:text="#{safety.manager.module}"
 							class="dropdown-toggle">Safety Manager</A>
 							<ul class="dropdown-menu" data-role="dropdown">
 								<li><a href="">Find esiTest</a></li>
@@ -111,7 +118,8 @@
 								<li><a href="">Search Items</a></li>
 								<li class="divider"></li>
 							</ul></li>
-						<li><A href="#" th:text="#{mobile.tester.module}"
+						<li sec:authorize="hasAnyRole('SAdmin','Admin','LT')"><A
+							href="#" th:text="#{mobile.tester.module}"
 							class="dropdown-toggle">Mobile Tester</A>
 							<ul class="dropdown-menu" data-role="dropdown">
 								<li><a href="">Add / Edit Items</a></li>
@@ -127,12 +135,15 @@
 								<li><a href="">Workload</a></li>
 								<li class="divider"></li>
 							</ul></li>
-						<li><A href="#" th:text="#{scheduling.module}"
-							sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-toggle" >Scheduling</A>
+						<li sec:authorize="hasAnyRole('SAdmin','Admin')"><A href="#"
+							th:text="#{scheduling.module}" class="dropdown-toggle">Scheduling</A>
 							<ul class="dropdown-menu" data-role="dropdown">
 								<li><a href="">Absent Details</a></li>
 								<li class="divider"></li>
-								<li><a href="">Add / Edit Items</a></li>
+								<li th:if="${itemSearchForm}" class="active"><a href="/additem" th:href="@{/additem}">Add
+										/ Edit Items</a></li>
+								<li th:if="!${itemSearchForm}"><a href="/additem" th:href="@{/additem}">Add
+										/ Edit Items</a></li>
 								<li class="divider"></li>
 								<li><a href="">Appointment</a></li>
 								<li class="divider"></li>
@@ -176,6 +187,10 @@
 			<div class="col-md-9">
 				<th:block th:if="${signupForm}">
 					<div th:replace="fragments/addUser :: addUser">&nbsp;</div>
+				</th:block>
+
+				<th:block th:if="${itemSearchForm}">
+					<div th:replace="fragments/searchItem :: searchItem">&nbsp;</div>
 				</th:block>
 			</div>
 		</div>
