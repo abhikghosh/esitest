@@ -3,6 +3,15 @@
 <head>
 <title th:text="#{view.index.title}">Welcome!</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700'
+	rel='stylesheet' type='text/css'></link>
+<link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css"></link>
+<script type="text/javascript"
+	src="http://oss.maxcdn.com/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
 <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
 	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
 <link href="../../../resources/css/dashboard.css" rel="stylesheet"
@@ -13,6 +22,12 @@
 	rel="stylesheet" media="screen"
 	th:href="@{/resources/css/metro-bootstrap.min.css}" />
 <link href="../../../resources/css/metro-bootstrap.responsive.css"
+	rel="stylesheet" media="screen"
+	th:href="@{/resources/css/jquery.multilevelpushmenu.css}" />
+<link href="../../../resources/css/jquery.multilevelpushmenu.css"
+	rel="stylesheet" media="screen"
+	th:href="@{/resources/css/bootstrap_integration.css}" />
+<link href="../../../resources/css/bootstrap_integration.css"
 	rel="stylesheet" media="screen"
 	th:href="@{/resources/css/metro-bootstrap.responsive.css}" />
 <link href="../../../resources/css/prettify.css" rel="stylesheet"
@@ -25,16 +40,24 @@
 	th:src="@{/resources/js/jquery.widget.min.js}"></script>
 <script src="../../../resources/js/metro.min.js"
 	th:src="@{/resources/js/metro.min.js}"></script>
-<script src="../../../resources/js/docs.min.js"
-	th:src="@{/resources/js/docs.min.js}"></script>
+<script src="../../../resources/js/jquery.dataTables.js"
+	th:src="@{/resources/js/jquery.dataTables.js}"></script>
 <script src="../../../resources/js/prettify.js"
 	th:src="@{/resources/js/prettify.js}"></script>
 <script src="../../../resources/js/jquery.mousewheel.js"
 	th:src="@{/resources/js/jquery.mousewheel.js}"></script>
-
-
+<script src="../../../resources/js/jquery.multilevelpushmenu.min.js"
+	th:src="@{/resources/js/jquery.multilevelpushmenu.min.js}"></script>
+<script src="../../../resources/js/bootstrap_integration.js"
+	th:src="@{/resources/js/bootstrap_integration.js}"></script>
 <!-- <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script> -->
+<script src="../../../resources/js/docs.js"
+	th:src="@{/resources/js/docs.js}"></script>
+
+
+
+
 </head>
 <body class="metro">
 	<div th:replace="fragments/header :: header">&nbsp;</div>
@@ -43,10 +66,12 @@
 	<DIV class="container">
 		<nav class="breadcrumbs">
 			<ul>
-			<li><a href="/" th:href="@{/}"><i class="icon-home"></i></a></li>
+				<li><a href="/" th:href="@{/}"><i class="icon-home"></i></a></li>
 				<li><a href="/" th:href="@{/}">Home</a></li>
-				<li th:if="${itemSearchForm}" class="active"><a href="/additem" th:href="@{/additem}">Add / Edit Item</a></li>
-				<li th:if="${signupForm}" class="active"><a href="/signup" th:href="@{/signup}">Add User</a></li>
+				<li th:if="${itemSearchForm}" class="active"><a href="/additem"
+					th:href="@{/additem}">Add / Edit Items</a></li>
+				<li th:if="${signupForm}" class="active"><a href="/signup"
+					th:href="@{/signup}">Add User</a></li>
 			</ul>
 		</nav>
 
@@ -61,9 +86,10 @@
 		</h3>
 		<div class="row">
 			<div class="col-md-3">
-				<nav class="sidebar light">
+				<nav class="sidebar lightblue">
 					<ul>
-						<li class="active"><a href="/" th:href="@{/}"><i class="icon-home"></i>Home</a></li>
+						<li class="active"><a href="/" th:href="@{/}"><i
+								class="icon-home"></i>Home</a></li>
 						<li><A href="#" th:text="#{engineer.module}"
 							class="dropdown-toggle">My esiTest</A>
 							<ul class="dropdown-menu" data-role="dropdown">
@@ -137,13 +163,13 @@
 							</ul></li>
 						<li sec:authorize="hasAnyRole('SAdmin','Admin')"><A href="#"
 							th:text="#{scheduling.module}" class="dropdown-toggle">Scheduling</A>
-							<ul class="dropdown-menu" data-role="dropdown">
+							<ul class="dropdown-menu" data-role="dropdown" >
 								<li><a href="">Absent Details</a></li>
 								<li class="divider"></li>
-								<li th:if="${itemSearchForm}" class="active"><a href="/additem" th:href="@{/additem}">Add
-										/ Edit Items</a></li>
-								<li th:if="!${itemSearchForm}"><a href="/additem" th:href="@{/additem}">Add
-										/ Edit Items</a></li>
+								<li th:if="${itemSearchForm}" class="active"><a
+									href="/additem" th:href="@{/additem}">Add / Edit Items</a></li>
+								<li th:if="!${itemSearchForm}"><a href="/additem"
+									th:href="@{/additem}">Add / Edit Items</a></li>
 								<li class="divider"></li>
 								<li><a href="">Appointment</a></li>
 								<li class="divider"></li>
@@ -182,7 +208,7 @@
 
 					</ul>
 				</nav>
-			</div>
+			</div> 
 
 			<div class="col-md-9">
 				<th:block th:if="${signupForm}">
@@ -191,6 +217,15 @@
 
 				<th:block th:if="${itemSearchForm}">
 					<div th:replace="fragments/searchItem :: searchItem">&nbsp;</div>
+					<div th:replace="fragments/searchResult :: searchResult">&nbsp;</div>
+					<script>
+						$(document).ready(function() {
+							$('#dataTables-1').dataTable({
+								"sPaginationType" : "full_numbers"
+							});
+						});
+					</script>
+
 				</th:block>
 			</div>
 		</div>

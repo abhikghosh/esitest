@@ -36,7 +36,9 @@ public class ItemController {
 		}
 
 		String item = itemSearchForm.getItem();
+		System.out.println("item -- "+item);
 		int type = itemSearchForm.getType();
+		System.out.println("type -- "+type);
 		List<TEsitestItems> items = null;
 
 		switch (type) {
@@ -45,6 +47,7 @@ public class ItemController {
 			break;
 		}
 
+		System.out.println("items list -- "+items);
 		model.addAttribute("items", items);
 		return ITEM_VIEW_NAME;
 	}

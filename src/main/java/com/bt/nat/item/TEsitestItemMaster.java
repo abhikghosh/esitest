@@ -1,10 +1,15 @@
 package com.bt.nat.item;
+
 // default package
 // Generated 14-Feb-2014 15:30:39 by Hibernate Tools 4.0.0
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +24,18 @@ public class TEsitestItemMaster implements java.io.Serializable {
 	private String timItemCode;
 	private String timCheckType;
 	private Integer timCheckPeriod;
-	private Integer timFctId;
+	private TEsitestFescCheckTypes checkTypes;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "tim_fct_id")
+	public TEsitestFescCheckTypes getCheckTypes() {
+		return checkTypes;
+	}
+
+	public void setCheckTypes(TEsitestFescCheckTypes checkTypes) {
+		this.checkTypes = checkTypes;
+	}
+
 	private Integer timTimeCost;
 	private Integer timTestsPerItem;
 	private Integer timRepairTime;
@@ -42,7 +58,7 @@ public class TEsitestItemMaster implements java.io.Serializable {
 
 	public TEsitestItemMaster(int timId, String timItemName,
 			String timItemCode, String timCheckType, Integer timCheckPeriod,
-			Integer timFctId, Integer timTimeCost, Integer timTestsPerItem,
+			Integer timTimeCost, Integer timTestsPerItem,
 			Integer timRepairTime, Integer timServiceTime,
 			String timPeriodicCal, Integer timCalPeriod, Character timIsActive,
 			Character timItemPurchaseType, Character timIsSpareRequired,
@@ -53,7 +69,6 @@ public class TEsitestItemMaster implements java.io.Serializable {
 		this.timItemCode = timItemCode;
 		this.timCheckType = timCheckType;
 		this.timCheckPeriod = timCheckPeriod;
-		this.timFctId = timFctId;
 		this.timTimeCost = timTimeCost;
 		this.timTestsPerItem = timTestsPerItem;
 		this.timRepairTime = timRepairTime;
@@ -112,15 +127,6 @@ public class TEsitestItemMaster implements java.io.Serializable {
 
 	public void setTimCheckPeriod(Integer timCheckPeriod) {
 		this.timCheckPeriod = timCheckPeriod;
-	}
-
-	@Column(name = "tim_fct_id")
-	public Integer getTimFctId() {
-		return this.timFctId;
-	}
-
-	public void setTimFctId(Integer timFctId) {
-		this.timFctId = timFctId;
 	}
 
 	@Column(name = "tim_time_cost")
