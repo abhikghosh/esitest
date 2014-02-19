@@ -23,13 +23,12 @@ public class ItemRepository {
 
 	public List<TEsitestItems> findByEin(Integer ein) {
 		try {
-			System.out.println("in find By ein -- " + ein);
 			return entityManager
 					.createNamedQuery(TEsitestItems.FIND_BY_EIN,
 							TEsitestItems.class).setParameter("ein", ein)
 					.getResultList();
 		} catch (Exception e) {
-			System.out.println("Error in loading username");
+			System.out.println("Error in findByEin");
 			e.printStackTrace();
 			return null;
 		}
@@ -37,10 +36,9 @@ public class ItemRepository {
 
 	public TEsitestItems findById(Long id) {
 		try {
-			System.out.println("in find By id -- " + id);
 			return entityManager.find(TEsitestItems.class, id);
 		} catch (Exception e) {
-			System.out.println("Error in loading username");
+			System.out.println("Error in findById");
 			e.printStackTrace();
 			return null;
 		}

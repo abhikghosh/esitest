@@ -53,10 +53,6 @@ public class HomeController {
 					.findMainMenuButtonsByType("main_page",
 							Arrays.asList(accestypes.get((account
 									.getWguProfileName())))));
-			System.out
-					.println("in index --> "
-							+ Arrays.asList(accestypes.get((account
-									.getWguProfileName()))));
 			return "home/homeSignedIn";
 		} else {
 			session.removeAttribute("currentUser");

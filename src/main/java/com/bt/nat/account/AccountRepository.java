@@ -18,16 +18,8 @@ public class AccountRepository {
 	@Inject
 	private PasswordEncoder passwordEncoder;
 	
-/*	@Transactional
-	public Item save(Item account) {
-		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		entityManager.persist(account);
-		return account;
-	}*/
-	
 	public TEsitestWebGatekeeperUsers findByEin(Integer ein) {
 		try {
-			System.out.println("in find By ein -- "+ein);
 			return entityManager.createNamedQuery(TEsitestWebGatekeeperUsers.FIND_BY_EIN, TEsitestWebGatekeeperUsers.class)
 					.setParameter("ein", ein)
 					.getSingleResult();

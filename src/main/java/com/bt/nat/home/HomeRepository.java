@@ -18,14 +18,13 @@ public class HomeRepository {
 	public List<TEsitestMainMenuButtons> findMainMenuButtonsByType(String type,
 			List<String> userType) {
 		try {
-			System.out.println("userType --> " + userType);
 			return entityManager
 					.createNamedQuery(TEsitestMainMenuButtons.FIND_BUTTONS,
 							TEsitestMainMenuButtons.class)
 					.setParameter("name", type).setParameter("type", userType)
 					.getResultList();
 		} catch (Exception e) {
-			System.out.println("Error in loading username");
+			System.out.println("Error in findMainMenuButtonsByType");
 			e.printStackTrace();
 			return null;
 		}
@@ -38,7 +37,7 @@ public class HomeRepository {
 							TEsitestMainMenuButtons.class)
 					.setParameter("name", type).getResultList();
 		} catch (Exception e) {
-			System.out.println("Error in loading username");
+			System.out.println("Error in findSubMenuButtonsByType");
 			e.printStackTrace();
 			return null;
 		}
