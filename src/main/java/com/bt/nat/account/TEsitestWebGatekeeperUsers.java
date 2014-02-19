@@ -3,8 +3,8 @@ package com.bt.nat.account;
 // Generated 14-Feb-2014 15:30:39 by Hibernate Tools 4.0.0
 
 import java.util.Date;
+
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;

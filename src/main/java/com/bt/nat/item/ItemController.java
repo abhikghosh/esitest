@@ -1,5 +1,8 @@
 package com.bt.nat.item;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,6 +15,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ItemController {
@@ -36,9 +41,7 @@ public class ItemController {
 		}
 
 		String item = itemSearchForm.getItem();
-		System.out.println("item -- "+item);
 		int type = itemSearchForm.getType();
-		System.out.println("type -- "+type);
 		List<TEsitestItems> items = null;
 
 		switch (type) {
@@ -47,8 +50,35 @@ public class ItemController {
 			break;
 		}
 
-		System.out.println("items list -- "+items);
 		model.addAttribute("items", items);
 		return ITEM_VIEW_NAME;
+	}
+
+	@RequestMapping(value = "itemAdd", method = RequestMethod.POST)
+	public @ResponseBody
+	String itemAdd(@RequestParam(value = "id") String id,
+			@RequestParam(value = "value") String value,
+			@RequestParam(value = "columnName") String columnName,
+			@RequestParam(value = "columnId") String columnId,
+			@RequestParam(value = "columnPosition") String columnPosition,
+			@RequestParam(value = "rowId") String rowId, ModelMap model)
+			throws ParseException {
+
+		TEsitestItems item = itemRepository.findById(new Long(id));
+		System.out.println(item.getTeiNextCheckDate());
+
+		if ("Next Check Date".equals(columnName)) {
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			Date date = format.parse(value);
+			item.setTeiNextCheckDate(date);
+		}
+
+		if ("Remarks".equals(columnName)) {
+			item.setTeiRemarks(value);
+		}
+
+		itemRepository.update(item);
+
+		return value;
 	}
 }

@@ -1,4 +1,4 @@
-package com.bt.nat.item;
+package com.bt.nat.home;
 
 import java.util.List;
 
@@ -10,23 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional(readOnly = true)
-public class ItemRepository {
+public class HomeRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	@Transactional
-	public TEsitestItems update(TEsitestItems item) {
-		entityManager.merge(item);
-		return item;
-	}
-
-	public List<TEsitestItems> findByEin(Integer ein) {
+	public List<TEsitestMainMenuButtons> findMainMenuButtonsByType(String type,
+			List<String> userType) {
 		try {
-			System.out.println("in find By ein -- " + ein);
+			System.out.println("userType --> " + userType);
 			return entityManager
-					.createNamedQuery(TEsitestItems.FIND_BY_EIN,
-							TEsitestItems.class).setParameter("ein", ein)
+					.createNamedQuery(TEsitestMainMenuButtons.FIND_BUTTONS,
+							TEsitestMainMenuButtons.class)
+					.setParameter("name", type).setParameter("type", userType)
 					.getResultList();
 		} catch (Exception e) {
 			System.out.println("Error in loading username");
@@ -35,14 +31,17 @@ public class ItemRepository {
 		}
 	}
 
-	public TEsitestItems findById(Long id) {
+	public List<TEsitestMainMenuButtons> findSubMenuButtonsByType(String type) {
 		try {
-			System.out.println("in find By id -- " + id);
-			return entityManager.find(TEsitestItems.class, id);
+			return entityManager
+					.createNamedQuery(TEsitestMainMenuButtons.FIND_SUB_BUTTONS,
+							TEsitestMainMenuButtons.class)
+					.setParameter("name", type).getResultList();
 		} catch (Exception e) {
 			System.out.println("Error in loading username");
 			e.printStackTrace();
 			return null;
 		}
 	}
+
 }

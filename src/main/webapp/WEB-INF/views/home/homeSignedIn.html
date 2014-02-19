@@ -54,6 +54,10 @@
 	th:src="@{/resources/js/bootstrap.min.js}"></script> -->
 <script src="../../../resources/js/docs.js"
 	th:src="@{/resources/js/docs.js}"></script>
+<script src="../../../resources/js/jquery.jeditable.mini.js"
+	th:src="@{/resources/js/jquery.jeditable.mini.js}"></script>
+<script src="../../../resources/js/jquery.dataTables.editable.js"
+	th:src="@{/resources/js/jquery.dataTables.editable.js}"></script>
 
 
 
@@ -84,7 +88,7 @@
 				</div>
 			</th:block>
 		</h3>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-2" style="padding:0">
 				<nav class="sidebar lightblue">
 					<ul>
@@ -209,26 +213,72 @@
 					</ul>
 				</nav>
 			</div> 
+ -->
+		<div class="col-md-12">
+			<th:block th:if="${signupForm}">
+				<div th:replace="fragments/addUser :: addUser">&nbsp;</div>
+			</th:block>
 
-			<div class="col-md-10">
-				<th:block th:if="${signupForm}">
-					<div th:replace="fragments/addUser :: addUser">&nbsp;</div>
-				</th:block>
-
-				<th:block th:if="${itemSearchForm}">
-					<div th:replace="fragments/searchItem :: searchItem">&nbsp;</div>
-					<div th:replace="fragments/searchResult :: searchResult">&nbsp;</div>
-					<script>
-						$(document).ready(function() {
-							$('#dataTables-1').dataTable({
-								"sPaginationType" : "full_numbers"
-							});
+			<th:block th:if="${itemSearchForm}">
+				<div th:replace="fragments/searchItem :: searchItem">&nbsp;</div>
+				<div th:replace="fragments/searchResult :: searchResult">&nbsp;</div>
+				<script>
+					$(document).ready(function() {
+						$('#dataTables-1').dataTable({
+							"sPaginationType" : "full_numbers"
+						}).makeEditable({
+							sUpdateURL : "/esitest/itemAdd",
+							"aoColumns" : [ null, {}, {}, {
+								indicator : 'Saving Next Check Date...',
+								tooltip : 'Click to edit Next Check Date',
+								type : 'text',
+								submit : 'Save changes'
+							}, {}, {
+								indicator : 'Saving Remarks...',
+								tooltip : 'Click to edit Remarks',
+								type : 'textarea',
+								submit : 'Save changes'
+							}, {}, {}, {} ]
 						});
-					</script>
+					});
+				</script>
 
-				</th:block>
-			</div>
+			</th:block>
 		</div>
+
+		<th:block th:if="${mainMenu}">
+			<div th:each="menu,rowStat : ${mainMenu}">
+				<a data-click="transform" class="tile double bg-lightBlue"
+					href="/navigate"
+					th:href="@{/navigate(name=${menu.mmbMmButtonName})}">>
+					<div class="tile-content email" style="top: 0px; margin-left: 0px;">
+
+						<div class="email-data" style="margin-left: 0px;">
+							<span class="email-data-title" th:text="${menu.mmbMmButtonName}">My
+								esiTest</span> <span class="email-data-text"
+								th:text="${menu.mmbMmButtonDescription}">Engineer Module</span>
+						</div>
+					</div>
+				</a>
+			</div>
+		</th:block>
+
+		<th:block th:if="${subMenu}">
+			<div th:each="menu,rowStat : ${subMenu}">
+				<a data-click="transform" class="tile double bg-lightBlue"
+					href="/navigate"
+					th:href="@{/navigate(name=${menu.mmbMmButtonName})}">>
+					<div class="tile-content email" style="top: 0px; margin-left: 0px;">
+
+						<div class="email-data" style="margin-left: 0px;">
+							<span class="email-data-title" th:text="${menu.mmbMmButtonName}">My
+								esiTest</span> <span class="email-data-text"
+								th:text="${menu.mmbMmButtonDescription}">Engineer Module</span>
+						</div>
+					</div>
+				</a>
+			</div>
+		</th:block>
 		<!-- </DIV> -->
 
 	</DIV>
